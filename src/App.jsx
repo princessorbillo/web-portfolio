@@ -143,11 +143,11 @@ function App() {
   ];
 
   const projects = [
-    { title: "Nomis Plus Dashboard", role: "Full Stack Dev (Software Developer Intern)", desc: "Enterprise dashboard built with Blazor WebAssembly, ASP.NET Core (.NET 10), and Tailwind CSS using a secure BFF pattern.", link: "https://placehold.co/600x400/1e293b/ffffff?text=Nomis+Plus+Dashboard" },
-    { title: "Nomis HelpDesk for Teams", role: "Bot and App Dev (Software Developer Intern)", desc: "A Microsoft Teams app integrating React, Fluent UI, and Microsoft Bot Framework with Azure AD and Graph.", link: "https://placehold.co/600x400/1e293b/ffffff?text=Nomis+HelpDesk" },
-    { title: "Ticket Booking Site", role: "UI/UX Design", desc: "Designed the UI/UX as part of an application for a local startup.", link: "https://intet.dashnexpages.net/Portfolio/ticket.jpg" },
-    { title: "Donut Munchies", role: "Web Design", desc: "A web design concept highlighting a sweet, modern e-commerce experience.", link: "https://intet.dashnexpages.net/Portfolio/dmhome.jpg" },
-    { title: "Kumpas", role: "Mobile App Development", desc: "A sign language translation app translating spoken English into animated FSL and ASL.", link: "https://intet.dashnexpages.net/Portfolio/kumpasmain.jpg" }
+    { title: "Nomis Plus Dashboard", role: "Full Stack Dev (Software Developer Intern)", desc: "Enterprise dashboard built with Blazor WebAssembly, ASP.NET Core (.NET 10), and Tailwind CSS using a secure BFF pattern. It leverages Vertical Slice Architecture to deliver a highly scalable, secure, and performant web experience for complex data management and administrative workflows.", link: "https://placehold.co/600x400/1e293b/ffffff?text=Nomis+Plus+Dashboard" },
+    { title: "Nomis HelpDesk for Teams", role: "Bot and App Dev (Software Developer Intern)", desc: "A Microsoft Teams app integrating React, Fluent UI, and Microsoft Bot Framework with Azure AD and Graph. It provides seamless conversational capabilities and rich Adaptive Cards within Teams, backed by Azure Cosmos DB and Application Insights for comprehensive telemetry and intelligent routing.", link: "https://placehold.co/600x400/1e293b/ffffff?text=Nomis+HelpDesk" },
+    { title: "Ticket Booking Site", role: "UI/UX Design", desc: "Designed the UI/UX as part of an application for a local startup. This project focused on creating a seamless, intuitive booking flow for end-users, ensuring that the interface was both visually appealing and highly functional across various devices and screen sizes.", link: "https://intet.dashnexpages.net/Portfolio/ticket.jpg" },
+    { title: "Donut Munchies", role: "Web Design", desc: "A web design concept highlighting a sweet, modern e-commerce experience. The primary goal was to create a vibrant, engaging storefront that balances playful aesthetics with robust shopping cart mechanics and clear calls-to-action for increased conversions.", link: "https://intet.dashnexpages.net/Portfolio/dmhome.jpg" },
+    { title: "Kumpas", role: "Mobile App Development", desc: "A sign language translation app translating spoken English into animated FSL and ASL. The application aims to bridge the communication gap for the deaf and hard of hearing by utilizing real-time natural language processing and rendering accurate 3D avatar animations for various sign dialects.", link: "https://intet.dashnexpages.net/Portfolio/kumpasmain.jpg" }
   ];
 
   return (
@@ -366,11 +366,11 @@ function App() {
               </button>
               
               {/* Image side */}
-              <div className="w-full md:w-3/5 bg-slate-100 h-64 md:h-auto relative">
+              <div className="w-full md:w-3/5 bg-slate-100 h-64 md:h-auto relative flex items-center justify-center p-4">
                 <img 
                   src={selectedProject.link} 
                   alt={selectedProject.title} 
-                  className="w-full h-full object-cover object-top"
+                  className="w-full h-full object-contain drop-shadow-xl"
                 />
               </div>
 
@@ -380,17 +380,9 @@ function App() {
                   {selectedProject.role}
                 </div>
                 <h3 className="text-3xl font-extrabold text-slate-900 mb-4">{selectedProject.title}</h3>
-                <p className="text-lg text-slate-600 leading-relaxed mb-8">
+                <p className="text-lg text-slate-600 leading-relaxed">
                   {selectedProject.desc}
                 </p>
-                <a 
-                  href={selectedProject.link} 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="inline-block bg-accent hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-xl transition-colors text-center shadow-lg shadow-blue-500/30"
-                >
-                  View Full Image
-                </a>
               </div>
             </motion.div>
           </motion.div>
