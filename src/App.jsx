@@ -143,8 +143,8 @@ function App() {
   ];
 
   const projects = [
-    { title: "Nomis Plus Dashboard", role: "Full-Stack Dev", desc: "Enterprise dashboard built with Blazor WebAssembly, ASP.NET Core (.NET 10), and Tailwind CSS using a secure BFF pattern.", link: "https://placehold.co/600x400/1e293b/ffffff?text=Nomis+Plus+Dashboard" },
-    { title: "Nomis HelpDesk for Teams", role: "Bot & App Dev", desc: "A Microsoft Teams app integrating React, Fluent UI, and Microsoft Bot Framework with Azure AD and Graph.", link: "https://placehold.co/600x400/1e293b/ffffff?text=Nomis+HelpDesk" },
+    { title: "Nomis Plus Dashboard", role: "Full Stack Dev (Software Developer Intern)", desc: "Enterprise dashboard built with Blazor WebAssembly, ASP.NET Core (.NET 10), and Tailwind CSS using a secure BFF pattern.", link: "https://placehold.co/600x400/1e293b/ffffff?text=Nomis+Plus+Dashboard" },
+    { title: "Nomis HelpDesk for Teams", role: "Bot and App Dev (Software Developer Intern)", desc: "A Microsoft Teams app integrating React, Fluent UI, and Microsoft Bot Framework with Azure AD and Graph.", link: "https://placehold.co/600x400/1e293b/ffffff?text=Nomis+HelpDesk" },
     { title: "Ticket Booking Site", role: "UI/UX Design", desc: "Designed the UI/UX as part of an application for a local startup.", link: "https://intet.dashnexpages.net/Portfolio/ticket.jpg" },
     { title: "Donut Munchies", role: "Web Design", desc: "A web design concept highlighting a sweet, modern e-commerce experience.", link: "https://intet.dashnexpages.net/Portfolio/dmhome.jpg" },
     { title: "Kumpas", role: "Mobile App Development", desc: "A sign language translation app translating spoken English into animated FSL and ASL.", link: "https://intet.dashnexpages.net/Portfolio/kumpasmain.jpg" }
