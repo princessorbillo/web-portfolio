@@ -28,7 +28,7 @@ const snippets = {
         <div className="pl-6"><span className="text-ide-component">"languages"</span>: [<span className="text-ide-string">"C#"</span>, <span className="text-ide-string">"TypeScript"</span>, <span className="text-ide-string">"JavaScript"</span>, <span className="text-ide-string">"Python"</span>, <span className="text-ide-string">"Java"</span>, <span className="text-ide-string">"C++"</span>],</div>
         <div className="pl-6"><span className="text-ide-component">"frontend"</span>: [<span className="text-ide-string">"React"</span>, <span className="text-ide-string">"Blazor"</span>, <span className="text-ide-string">"Tailwind CSS"</span>, <span className="text-ide-string">"Fluent UI"</span>],</div>
         <div className="pl-6"><span className="text-ide-component">"backend"</span>: [<span className="text-ide-string">"ASP.NET Core"</span>, <span className="text-ide-string">".NET 10"</span>, <span className="text-ide-string">"Node.js"</span>, <span className="text-ide-string">"PHP"</span>],</div>
-        <div className="pl-6"><span className="text-ide-component">"cloud_db"</span>: [<span className="text-ide-string">"Azure"</span>, <span className="text-ide-string">"SQL"</span>, <span className="text-ide-string">"Cosmos DB"</span>, <span className="text-ide-string">"Oracle"</span>],</div>
+        <div className="pl-6"><span className="text-ide-component">"cloud_db"</span>: [<span className="text-ide-string">"Azure"</span>, <span className="text-ide-string">"SQL"</span>, <span className="text-ide-string">"Oracle"</span>],</div>
         <div className="pl-6"><span className="text-ide-component">"tools"</span>: [<span className="text-ide-string">"Git"</span>, <span className="text-ide-string">"Azure DevOps"</span>, <span className="text-ide-string">"Teams Toolkit"</span>]</div>
         <div>{'}'}</div>
       </div>
@@ -144,7 +144,7 @@ function App() {
 
   const projects = [
     { title: "Nomis Plus Dashboard", role: "Full Stack Dev (Software Developer Intern)", desc: "Enterprise dashboard built with Blazor WebAssembly, ASP.NET Core (.NET 10), and Tailwind CSS using a secure BFF pattern. It leverages Vertical Slice Architecture to deliver a highly scalable, secure, and performant web experience for complex data management and administrative workflows.", link: "https://placehold.co/600x400/1e293b/ffffff?text=Nomis+Plus+Dashboard" },
-    { title: "Nomis HelpDesk for Teams", role: "Bot and App Dev (Software Developer Intern)", desc: "A Microsoft Teams app integrating React, Fluent UI, and Microsoft Bot Framework with Azure AD and Graph. It provides seamless conversational capabilities and rich Adaptive Cards within Teams, backed by Azure Cosmos DB and Application Insights for comprehensive telemetry and intelligent routing.", link: "https://placehold.co/600x400/1e293b/ffffff?text=Nomis+HelpDesk" },
+    { title: "Nomis HelpDesk for Teams", role: "Bot and App Dev (Software Developer Intern)", desc: "A Microsoft Teams app integrating React, Fluent UI, and Microsoft Bot Framework with Azure AD and Graph. It provides seamless conversational capabilities and rich Adaptive Cards within Teams, backed by Azure SQL and Application Insights for comprehensive telemetry and intelligent routing.", link: "https://placehold.co/600x400/1e293b/ffffff?text=Nomis+HelpDesk" },
     { title: "Ticket Booking Site", role: "UI/UX Design", desc: "Designed the UI/UX as part of an application for a local startup. This project focused on creating a seamless, intuitive booking flow for end-users, ensuring that the interface was both visually appealing and highly functional across various devices and screen sizes.", link: "https://intet.dashnexpages.net/Portfolio/ticket.jpg" },
     { title: "Donut Munchies", role: "Web Design", desc: "A web design concept highlighting a sweet, modern e-commerce experience. The primary goal was to create a vibrant, engaging storefront that balances playful aesthetics with robust shopping cart mechanics and clear calls-to-action for increased conversions.", link: "https://intet.dashnexpages.net/Portfolio/dmhome.jpg" },
     { title: "Kumpas", role: "Mobile App Development", desc: "A sign language translation app translating spoken English into animated FSL and ASL. The application aims to bridge the communication gap for the deaf and hard of hearing by utilizing real-time natural language processing and rendering accurate 3D avatar animations for various sign dialects.", link: "https://intet.dashnexpages.net/Portfolio/kumpasmain.jpg" }
@@ -210,7 +210,7 @@ function App() {
                 <p className="text-secondary font-medium">
                   {i === 0 ? 'React, Blazor, Tailwind, Fluent UI' : 
                    i === 1 ? 'C#, TypeScript, Python, Android Studio' : 
-                   i === 2 ? 'ASP.NET Core, .NET 10, SQL, Cosmos DB' :
+                   i === 2 ? 'ASP.NET Core, .NET 10, SQL' :
                    'Azure, Bot Framework, Vertical Slice, Microservices'}
                 </p>
               </motion.div>
