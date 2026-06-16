@@ -25,10 +25,11 @@ const snippets = {
     content: (
       <div className="font-mono text-sm leading-relaxed text-ide-text">
         <div>{'{'}</div>
-        <div className="pl-6"><span className="text-ide-component">"languages"</span>: [<span className="text-ide-string">"Python"</span>, <span className="text-ide-string">"Java"</span>, <span className="text-ide-string">"JavaScript"</span>, <span className="text-ide-string">"C++"</span>],</div>
-        <div className="pl-6"><span className="text-ide-component">"frontend"</span>: [<span className="text-ide-string">"React"</span>, <span className="text-ide-string">"HTML"</span>, <span className="text-ide-string">"CSS"</span>, <span className="text-ide-string">"Tailwind"</span>],</div>
-        <div className="pl-6"><span className="text-ide-component">"mobile"</span>: [<span className="text-ide-string">"Android Studio"</span>, <span className="text-ide-string">"Kotlin"</span>],</div>
-        <div className="pl-6"><span className="text-ide-component">"backend"</span>: [<span className="text-ide-string">"PHP"</span>, <span className="text-ide-string">"Oracle SQL"</span>]</div>
+        <div className="pl-6"><span className="text-ide-component">"languages"</span>: [<span className="text-ide-string">"C#"</span>, <span className="text-ide-string">"TypeScript"</span>, <span className="text-ide-string">"JavaScript"</span>, <span className="text-ide-string">"Python"</span>, <span className="text-ide-string">"Java"</span>, <span className="text-ide-string">"C++"</span>],</div>
+        <div className="pl-6"><span className="text-ide-component">"frontend"</span>: [<span className="text-ide-string">"React"</span>, <span className="text-ide-string">"Blazor"</span>, <span className="text-ide-string">"Tailwind CSS"</span>, <span className="text-ide-string">"Fluent UI"</span>],</div>
+        <div className="pl-6"><span className="text-ide-component">"backend"</span>: [<span className="text-ide-string">"ASP.NET Core"</span>, <span className="text-ide-string">".NET 10"</span>, <span className="text-ide-string">"Node.js"</span>, <span className="text-ide-string">"PHP"</span>],</div>
+        <div className="pl-6"><span className="text-ide-component">"cloud_db"</span>: [<span className="text-ide-string">"Azure"</span>, <span className="text-ide-string">"SQL"</span>, <span className="text-ide-string">"Cosmos DB"</span>, <span className="text-ide-string">"Oracle"</span>],</div>
+        <div className="pl-6"><span className="text-ide-component">"tools"</span>: [<span className="text-ide-string">"Git"</span>, <span className="text-ide-string">"Azure DevOps"</span>, <span className="text-ide-string">"Teams Toolkit"</span>]</div>
         <div>{'}'}</div>
       </div>
     )
@@ -142,6 +143,8 @@ function App() {
   ];
 
   const projects = [
+    { title: "Nomis Plus Dashboard", role: "Full-Stack Dev", desc: "Enterprise dashboard built with Blazor WebAssembly, ASP.NET Core (.NET 10), and Tailwind CSS using a secure BFF pattern.", link: "https://placehold.co/600x400/1e293b/ffffff?text=Nomis+Plus+Dashboard" },
+    { title: "Nomis HelpDesk for Teams", role: "Bot & App Dev", desc: "A Microsoft Teams app integrating React, Fluent UI, and Microsoft Bot Framework with Azure AD and Graph.", link: "https://placehold.co/600x400/1e293b/ffffff?text=Nomis+HelpDesk" },
     { title: "Ticket Booking Site", role: "UI/UX Design", desc: "Designed the UI/UX as part of an application for a local startup.", link: "https://intet.dashnexpages.net/Portfolio/ticket.jpg" },
     { title: "Donut Munchies", role: "Web Design", desc: "A web design concept highlighting a sweet, modern e-commerce experience.", link: "https://intet.dashnexpages.net/Portfolio/dmhome.jpg" },
     { title: "Kumpas", role: "Mobile App Development", desc: "A sign language translation app translating spoken English into animated FSL and ASL.", link: "https://intet.dashnexpages.net/Portfolio/kumpasmain.jpg" }
@@ -201,11 +204,14 @@ function App() {
             <span className="w-2 h-2 rounded-full bg-accent animate-pulse"></span> 02 / Expertise
           </h2>
           <div className="space-y-8 max-w-md">
-            {['Frontend Development', 'Software & Mobile', 'Backend & Databases'].map((title, i) => (
+            {['Frontend Development', 'Software & Mobile', 'Backend & Databases', 'Cloud & Architecture'].map((title, i) => (
               <motion.div key={i} whileHover={{ x: 10 }} className="cursor-default">
                 <h3 className="text-xl mb-2 font-bold text-slate-800">{title}</h3>
                 <p className="text-secondary font-medium">
-                  {i === 0 ? 'React, HTML, CSS, JavaScript, Tailwind' : i === 1 ? 'Python, Java, C++, Android Studio, Kotlin' : 'PHP, Oracle SQL'}
+                  {i === 0 ? 'React, Blazor, Tailwind, Fluent UI' : 
+                   i === 1 ? 'C#, TypeScript, Python, Android Studio' : 
+                   i === 2 ? 'ASP.NET Core, .NET 10, SQL, Cosmos DB' :
+                   'Azure, Bot Framework, Vertical Slice, Microservices'}
                 </p>
               </motion.div>
             ))}
