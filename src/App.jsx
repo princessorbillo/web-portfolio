@@ -72,6 +72,10 @@ const snippets = {
         <div className="text-ide-comment"># Verified Credentials</div>
         <div><span className="text-ide-tag">certifications</span>:</div>
         
+        <div className="pl-6"><span className="text-ide-keyword">-</span> <span className="text-ide-component">name</span>: <span className="text-ide-string">"TOPCIT Level 5 Passer"</span></div>
+        <div className="pl-8"><span className="text-ide-component">issuer</span>: <span className="text-ide-string">"TOPCIT"</span></div>
+        <div className="pl-8"><span className="text-ide-component">year</span>: <span className="text-ide-keyword">2026</span></div>
+        <br/>
         <div className="pl-6"><span className="text-ide-keyword">-</span> <span className="text-ide-component">name</span>: <span className="text-ide-string">"Microsoft Azure AI"</span></div>
         <div className="pl-8"><span className="text-ide-component">issuer</span>: <span className="text-ide-string">"TESDA"</span></div>
         <div className="pl-8"><span className="text-ide-component">year</span>: <span className="text-ide-keyword">2025</span></div>
@@ -135,6 +139,7 @@ function App() {
   }, []);
 
   const certs = [
+    { title: "The Test of Practical Competency in ICT (TOPCIT) Level 5 Passer", issuer: "TOPCIT", year: "2026" },
     { title: "Microsoft Artificial Intelligence Course (Azure AI)", issuer: "TESDA", year: "2025" },
     { title: "Fundamentals of CSS Course", issuer: "TESDA", year: "2025" },
     { title: "IT Specialist Python", issuer: "American Council on Education", year: "2024" },
@@ -143,11 +148,12 @@ function App() {
   ];
 
   const projects = [
-    { title: "Nomis Plus Dashboard", role: "Full Stack Dev (Software Developer Intern)", desc: "Enterprise dashboard built with Blazor WebAssembly, ASP.NET Core (.NET 10), and Tailwind CSS using a secure BFF pattern. It leverages Vertical Slice Architecture to deliver a highly scalable, secure, and performant web experience for complex data management and administrative workflows.", link: "https://placehold.co/600x400/1e293b/ffffff?text=Nomis+Plus+Dashboard" },
-    { title: "Nomis HelpDesk for Teams", role: "Bot and App Dev (Software Developer Intern)", desc: "A Microsoft Teams app integrating React, Fluent UI, and Microsoft Bot Framework with Azure AD and Graph. It provides seamless conversational capabilities and rich Adaptive Cards within Teams, backed by Azure SQL and Application Insights for comprehensive telemetry and intelligent routing.", link: "https://placehold.co/600x400/1e293b/ffffff?text=Nomis+HelpDesk" },
-    { title: "Ticket Booking Site", role: "UI/UX Design", desc: "Designed the UI/UX as part of an application for a local startup. This project focused on creating a seamless, intuitive booking flow for end-users, ensuring that the interface was both visually appealing and highly functional across various devices and screen sizes.", link: "https://intet.dashnexpages.net/Portfolio/ticket.jpg" },
-    { title: "Donut Munchies", role: "Web Design", desc: "A web design concept highlighting a sweet, modern e-commerce experience. The primary goal was to create a vibrant, engaging storefront that balances playful aesthetics with robust shopping cart mechanics and clear calls-to-action for increased conversions.", link: "https://intet.dashnexpages.net/Portfolio/dmhome.jpg" },
-    { title: "Kumpas", role: "Mobile App Development", desc: "A sign language translation app translating spoken English into animated FSL and ASL. The application aims to bridge the communication gap for the deaf and hard of hearing by utilizing real-time natural language processing and rendering accurate 3D avatar animations for various sign dialects.", link: "https://intet.dashnexpages.net/Portfolio/kumpasmain.jpg" }
+    { title: "Nomis Plus Dashboard", year: "2026", role: "Full Stack Dev (Software Developer Intern)", desc: "Enterprise dashboard built with Blazor WebAssembly, ASP.NET Core (.NET 10), and Tailwind CSS using a secure BFF pattern. It leverages Vertical Slice Architecture to deliver a highly scalable, secure, and performant web experience for complex data management and administrative workflows.", link: "https://placehold.co/600x400/1e293b/ffffff?text=Nomis+Plus+Dashboard" },
+    { title: "Alejo Electrical Supply", year: "2026", role: "Frontend Developer", desc: "A modern web presence and e-commerce application for an electrical supply store. Built to showcase products, streamline customer inquiries, and highlight business services with an engaging and responsive interface.", link: "/alejo.png", url: "https://alejo-electrical-supply.vercel.app/" },
+    { title: "Nomis HelpDesk for Teams", year: "2025", role: "Bot and App Dev (Software Developer Intern)", desc: "A Microsoft Teams app integrating React, Fluent UI, and Microsoft Bot Framework with Azure AD and Graph. It provides seamless conversational capabilities and rich Adaptive Cards within Teams, backed by Azure SQL and Application Insights for comprehensive telemetry and intelligent routing.", link: "https://placehold.co/600x400/1e293b/ffffff?text=Nomis+HelpDesk" },
+    { title: "Kumpas", year: "2025", role: "Mobile App Development", desc: "A sign language translation app translating spoken English into animated FSL and ASL. The application aims to bridge the communication gap for the deaf and hard of hearing by utilizing real-time natural language processing and rendering accurate 3D avatar animations for various sign dialects.", link: "https://intet.dashnexpages.net/Portfolio/kumpasmain.jpg" },
+    { title: "Ticket Booking Site", year: "2023", role: "UI/UX Design", desc: "Designed the UI/UX as part of an application for a local startup. This project focused on creating a seamless, intuitive booking flow for end-users, ensuring that the interface was both visually appealing and highly functional across various devices and screen sizes.", link: "https://intet.dashnexpages.net/Portfolio/ticket.jpg" },
+    { title: "Donut Munchies", year: "2023", role: "Web Design", desc: "A web design concept highlighting a sweet, modern e-commerce experience. The primary goal was to create a vibrant, engaging storefront that balances playful aesthetics with robust shopping cart mechanics and clear calls-to-action for increased conversions.", link: "https://intet.dashnexpages.net/Portfolio/dmhome.jpg" }
   ];
 
   return (
@@ -241,7 +247,10 @@ function App() {
                     <h3 className="text-2xl font-bold text-slate-800 group-hover/item:text-accent transition-colors">{project.title}</h3>
                     <span className="text-accent opacity-0 group-hover/item:opacity-100 transition-opacity">↗</span>
                   </div>
-                  <div className="text-accent font-mono text-xs font-bold mb-3 tracking-wider uppercase bg-blue-50 w-fit px-3 py-1 rounded-full">{project.role}</div>
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="text-accent font-mono text-xs font-bold tracking-wider uppercase bg-blue-50 w-fit px-3 py-1 rounded-full">{project.role}</div>
+                    <div className="text-slate-500 font-mono text-sm font-bold">{project.year}</div>
+                  </div>
                   <p className="text-slate-600 font-medium leading-relaxed">{project.desc}</p>
                 </div>
               </motion.div>
@@ -366,23 +375,36 @@ function App() {
               </button>
               
               {/* Image side */}
-              <div className="w-full md:w-3/5 bg-slate-100 h-64 md:h-auto relative flex items-center justify-center p-4">
+              <div className="w-full md:w-3/5 bg-slate-100 h-64 md:h-auto relative flex items-center justify-center overflow-hidden">
                 <img 
                   src={selectedProject.link} 
                   alt={selectedProject.title} 
-                  className="w-full h-full object-contain drop-shadow-xl"
+                  className="w-full h-full object-cover object-top"
                 />
               </div>
 
               {/* Info side */}
               <div className="w-full md:w-2/5 p-8 md:p-12 flex flex-col justify-center bg-white">
-                <div className="text-accent font-mono text-xs font-bold mb-4 tracking-wider uppercase bg-blue-50 w-fit px-3 py-1 rounded-full">
-                  {selectedProject.role}
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="text-accent font-mono text-xs font-bold tracking-wider uppercase bg-blue-50 w-fit px-3 py-1 rounded-full">
+                    {selectedProject.role}
+                  </div>
+                  <div className="text-slate-500 font-mono text-sm font-bold">{selectedProject.year}</div>
                 </div>
                 <h3 className="text-3xl font-extrabold text-slate-900 mb-4">{selectedProject.title}</h3>
-                <p className="text-lg text-slate-600 leading-relaxed">
+                <p className="text-lg text-slate-600 leading-relaxed mb-6">
                   {selectedProject.desc}
                 </p>
+                {selectedProject.url && (
+                  <a 
+                    href={selectedProject.url} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 bg-accent text-white px-6 py-3 rounded-full font-bold w-fit hover:bg-blue-600 transition-colors shadow-lg shadow-blue-500/30"
+                  >
+                    Visit Website <span>↗</span>
+                  </a>
+                )}
               </div>
             </motion.div>
           </motion.div>
