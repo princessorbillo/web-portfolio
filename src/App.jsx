@@ -292,7 +292,7 @@ function App() {
             About
           </h2>
           <div className="text-lg leading-relaxed max-w-md space-y-6 text-secondary font-medium">
-            <p className="group-hover:text-primary transition-colors duration-500">I specialize in building robust software architectures and engaging user interfaces, focusing on performance and user satisfaction.</p>
+            <p className="group-hover:text-primary transition-colors duration-500">I specialize in building software applications and user interfaces, with a focus on performance and user satisfaction.</p>
             <p className="text-muted italic border-l-2 border-accent/30 pl-4">"Transforming challenges into opportunities through thoughtful technology."</p>
           </div>
         </motion.section>
