@@ -4,10 +4,115 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ═══════════════════════════════════════════
+   THEME VARIABLES — Dark (default)
+   ═══════════════════════════════════════════ */
+:root {
+  /* Background & Surfaces */
+  --color-bg: #0a0a1a;
+  --color-surface: rgba(255, 255, 255, 0.03);
+  --color-surface-hover: rgba(255, 255, 255, 0.06);
+  --color-surface-border: rgba(255, 255, 255, 0.08);
+  --color-surface-card: rgba(15, 15, 35, 0.8);
+
+  /* Text */
+  --color-primary: #e2e8f0;
+  --color-secondary: #94a3b8;
+  --color-muted: #475569;
+
+  /* IDE (Catppuccin Dark) */
+  --ide-bg: #1e1e2e;
+  --ide-border: rgba(255, 255, 255, 0.08);
+  --ide-topbar: #181825;
+  --ide-text: #cdd6f4;
+  --ide-keyword: #cba6f7;
+  --ide-string: #a6e3a1;
+  --ide-function: #89b4fa;
+  --ide-variable: #fab387;
+  --ide-comment: #6c7086;
+  --ide-tag: #94e2d5;
+  --ide-component: #89dceb;
+  --ide-lineNum: #45475a;
+
+  /* Misc */
+  --glass-shadow: rgba(0, 0, 0, 0.5);
+  --glass-glow: rgba(139, 92, 246, 0.15);
+  --mesh-violet: rgba(139, 92, 246, 0.12);
+  --mesh-cyan: rgba(6, 182, 212, 0.08);
+  --grid-color: rgba(139, 92, 246, 0.03);
+  --noise-opacity: 0.02;
+  --cursor-glow-violet: rgba(139, 92, 246, 0.4);
+  --cursor-glow-cyan: rgba(6, 182, 212, 0.2);
+  --modal-backdrop: rgba(10, 10, 26, 0.85);
+  --quote-border: rgba(139, 92, 246, 0.3);
+  --status-bg: rgba(34, 197, 94, 0.1);
+  --status-border: rgba(34, 197, 94, 0.2);
+  --status-text: #4ade80;
+  --gradient-overlay: rgba(15, 15, 35, 0.5);
+}
+
+/* ═══════════════════════════════════════════
+   THEME VARIABLES — Light
+   ═══════════════════════════════════════════ */
+:root[data-theme="light"] {
+  /* Background & Surfaces */
+  --color-bg: #f8fafc;
+  --color-surface: rgba(0, 0, 0, 0.02);
+  --color-surface-hover: rgba(0, 0, 0, 0.04);
+  --color-surface-border: rgba(0, 0, 0, 0.08);
+  --color-surface-card: rgba(255, 255, 255, 0.9);
+
+  /* Text */
+  --color-primary: #0f172a;
+  --color-secondary: #475569;
+  --color-muted: #94a3b8;
+
+  /* IDE (GitHub Light-ish) */
+  --ide-bg: #ffffff;
+  --ide-border: rgba(0, 0, 0, 0.08);
+  --ide-topbar: #f8fafc;
+  --ide-text: #334155;
+  --ide-keyword: #8b5cf6;
+  --ide-string: #16a34a;
+  --ide-function: #2563eb;
+  --ide-variable: #ea580c;
+  --ide-comment: #94a3b8;
+  --ide-tag: #0d9488;
+  --ide-component: #0284c7;
+  --ide-lineNum: #cbd5e1;
+
+  /* Misc */
+  --glass-shadow: rgba(0, 0, 0, 0.06);
+  --glass-glow: rgba(139, 92, 246, 0.08);
+  --mesh-violet: rgba(139, 92, 246, 0.06);
+  --mesh-cyan: rgba(6, 182, 212, 0.04);
+  --grid-color: rgba(139, 92, 246, 0.04);
+  --noise-opacity: 0.01;
+  --cursor-glow-violet: rgba(139, 92, 246, 0.15);
+  --cursor-glow-cyan: rgba(6, 182, 212, 0.08);
+  --modal-backdrop: rgba(248, 250, 252, 0.85);
+  --quote-border: rgba(139, 92, 246, 0.4);
+  --status-bg: rgba(34, 197, 94, 0.08);
+  --status-border: rgba(34, 197, 94, 0.25);
+  --status-text: #16a34a;
+  --gradient-overlay: rgba(255, 255, 255, 0.5);
+}
+
+/* ═══════════════════════════════════════════
+   BASE STYLES
+   ═══════════════════════════════════════════ */
 @layer base {
   body {
-    @apply bg-background text-primary antialiased selection:bg-accent selection:text-white;
+    background-color: var(--color-bg);
+    color: var(--color-primary);
+    @apply antialiased;
     font-family: 'DM Sans', system-ui, sans-serif;
+    overflow-x: hidden;
+    transition: background-color 0.4s ease, color 0.4s ease;
+  }
+  ::selection {
+    background: rgba(139, 92, 246, 0.5);
+    color: white;
   }
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Outfit', system-ui, sans-serif;
@@ -18,17 +123,229 @@ html {
   scroll-behavior: smooth;
 }
 
+/* ─── Scrollbar ─── */
 ::-webkit-scrollbar {
-  width: 0px;
+  width: 6px;
+}
+::-webkit-scrollbar-track {
   background: transparent;
 }
-
-.ide-shadow {
-  box-shadow: 0 25px 50px -12px rgba(0,0,0,0.08), 0 0 0 1px rgba(0,0,0,0.03);
+::-webkit-scrollbar-thumb {
+  background: rgba(139, 92, 246, 0.3);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(139, 92, 246, 0.5);
 }
 
-/* Beautiful subtle dot pattern background */
-.bg-dot-pattern {
-  background-image: radial-gradient(rgba(100, 116, 139, 0.15) 1px, transparent 1px);
-  background-size: 24px 24px;
+/* ─── Gradient Text ─── */
+.gradient-text {
+  background: linear-gradient(135deg, #8b5cf6 0%, #06b6d4 50%, #8b5cf6 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-shift 8s ease infinite;
+}
+
+/* ─── Glassmorphic Card ─── */
+.glass-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-surface-border);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 1rem;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-card:hover {
+  background: var(--color-surface-hover);
+  border-color: rgba(139, 92, 246, 0.3);
+  box-shadow: 
+    0 0 30px -5px var(--glass-glow),
+    0 0 0 1px rgba(139, 92, 246, 0.1);
+}
+
+/* ─── IDE Window ─── */
+.ide-shadow {
+  box-shadow: 
+    0 25px 60px -12px var(--glass-shadow),
+    0 0 0 1px var(--color-surface-border),
+    0 0 40px -10px var(--glass-glow);
+  transition: box-shadow 0.4s ease;
+}
+
+.ide-glow-border {
+  position: relative;
+}
+
+.ide-glow-border::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 1rem;
+  padding: 1px;
+  background: linear-gradient(
+    135deg, 
+    rgba(139, 92, 246, 0.4) 0%, 
+    rgba(6, 182, 212, 0.2) 50%, 
+    rgba(139, 92, 246, 0.1) 100%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  animation: glow-pulse 3s ease-in-out infinite;
+}
+
+/* ─── Background Grid ─── */
+.bg-grid-pattern {
+  background-image: 
+    linear-gradient(var(--grid-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* ─── Gradient Mesh Background ─── */
+.bg-mesh {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  transition: opacity 0.4s ease;
+}
+
+.bg-mesh::before {
+  content: '';
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  top: -10%;
+  right: -10%;
+  background: radial-gradient(circle, var(--mesh-violet) 0%, transparent 70%);
+  animation: float 12s ease-in-out infinite;
+}
+
+.bg-mesh::after {
+  content: '';
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  bottom: -10%;
+  left: -10%;
+  background: radial-gradient(circle, var(--mesh-cyan) 0%, transparent 70%);
+  animation: float 15s ease-in-out infinite reverse;
+}
+
+/* ─── Noise Overlay ─── */
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: var(--noise-opacity);
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+
+/* ─── Section Accent Bar ─── */
+.section-bar {
+  position: absolute;
+  left: -1.5rem;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, #8b5cf6, #06b6d4);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 999px;
+}
+
+.group:hover .section-bar {
+  transform: scaleY(1);
+}
+
+/* ─── Status Badge ─── */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.375rem 1rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  background: var(--status-bg);
+  color: var(--status-text);
+  border: 1px solid var(--status-border);
+  transition: all 0.4s ease;
+}
+
+.status-badge .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--status-text);
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+/* ─── Theme Toggle ─── */
+.theme-toggle {
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+  z-index: 50;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 1px solid var(--color-surface-border);
+  background: var(--color-surface);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-size: 1.2rem;
+  box-shadow: 0 4px 20px -4px var(--glass-shadow);
+}
+
+.theme-toggle:hover {
+  background: var(--color-surface-hover);
+  border-color: rgba(139, 92, 246, 0.3);
+  box-shadow: 0 0 20px -5px var(--glass-glow);
+  transform: scale(1.1) rotate(15deg);
+}
+
+/* ─── Keyframes ─── */
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.cursor-blink {
+  animation: blink 1s step-end infinite;
 }

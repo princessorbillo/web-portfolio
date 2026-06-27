@@ -1,123 +1,176 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform, useSpring } from 'framer-motion';
 
-// Code snippets for the IDE window
+// ─── IDE Code Snippets (Dark Catppuccin Theme) ───
 const snippets = {
   about: {
     name: 'AboutMe.js',
-    content: (
-      <div className="font-mono text-sm leading-relaxed text-ide-text">
-        <div><span className="text-ide-keyword">const</span> <span className="text-ide-variable">developer</span> <span className="text-ide-keyword">=</span> {'{'}</div>
-        <div className="pl-6"><span className="text-ide-component">name</span>: <span className="text-ide-string">'Princess Morera Orbillo'</span>,</div>
-        <div className="pl-6"><span className="text-ide-component">role</span>: <span className="text-ide-string">'Software Engineer'</span>,</div>
-        <div className="pl-6"><span className="text-ide-component">education</span>: <span className="text-ide-string">'4th Year Computer Science'</span>,</div>
-        <div className="pl-6"><span className="text-ide-component">focus</span>: [<span className="text-ide-string">'UI/UX'</span>, <span className="text-ide-string">'Frontend'</span>],</div>
-        <div className="pl-6"><span className="text-ide-component">quote</span>: <span className="text-ide-string">'Transforming challenges into opportunities'</span></div>
-        <div>{'}'};</div>
-        <br />
-        <div className="text-ide-comment">{'// Current Status'}</div>
-        <div><span className="text-ide-variable">developer</span>.<span className="text-ide-function">isReadyForWork</span>(); <span className="text-ide-comment">{'// Returns true'}</span></div>
-      </div>
-    )
+    icon: '⚡',
+    content: [
+      { line: 'const', cls: 'text-ide-keyword', rest: [{ text: ' developer', cls: 'text-ide-variable' }, { text: ' = {', cls: 'text-ide-text' }] },
+      { indent: 2, parts: [{ text: 'name', cls: 'text-ide-component' }, { text: ': ', cls: 'text-ide-text' }, { text: "'Princess Morera Orbillo'", cls: 'text-ide-string' }, { text: ',', cls: 'text-ide-text' }] },
+      { indent: 2, parts: [{ text: 'role', cls: 'text-ide-component' }, { text: ': ', cls: 'text-ide-text' }, { text: "'Software Engineer'", cls: 'text-ide-string' }, { text: ',', cls: 'text-ide-text' }] },
+      { indent: 2, parts: [{ text: 'education', cls: 'text-ide-component' }, { text: ': ', cls: 'text-ide-text' }, { text: "'4th Year Computer Science'", cls: 'text-ide-string' }, { text: ',', cls: 'text-ide-text' }] },
+      { indent: 2, parts: [{ text: 'focus', cls: 'text-ide-component' }, { text: ': [', cls: 'text-ide-text' }, { text: "'UI/UX'", cls: 'text-ide-string' }, { text: ', ', cls: 'text-ide-text' }, { text: "'Frontend'", cls: 'text-ide-string' }, { text: '],', cls: 'text-ide-text' }] },
+      { indent: 2, parts: [{ text: 'quote', cls: 'text-ide-component' }, { text: ': ', cls: 'text-ide-text' }, { text: "'Transforming challenges into opportunities'", cls: 'text-ide-string' }] },
+      { text: '};', cls: 'text-ide-text' },
+      { empty: true },
+      { text: '// Current Status', cls: 'text-ide-comment' },
+      { parts: [{ text: 'developer', cls: 'text-ide-variable' }, { text: '.', cls: 'text-ide-text' }, { text: 'isReadyForWork', cls: 'text-ide-function' }, { text: '(); ', cls: 'text-ide-text' }, { text: '// Returns true', cls: 'text-ide-comment' }] },
+    ]
   },
   expertise: {
     name: 'tech_stack.json',
-    content: (
-      <div className="font-mono text-sm leading-relaxed text-ide-text">
-        <div>{'{'}</div>
-        <div className="pl-6"><span className="text-ide-component">"languages"</span>: [<span className="text-ide-string">"C#"</span>, <span className="text-ide-string">"TypeScript"</span>, <span className="text-ide-string">"JavaScript"</span>, <span className="text-ide-string">"Python"</span>, <span className="text-ide-string">"Java"</span>, <span className="text-ide-string">"C++"</span>],</div>
-        <div className="pl-6"><span className="text-ide-component">"frontend"</span>: [<span className="text-ide-string">"React"</span>, <span className="text-ide-string">"Blazor"</span>, <span className="text-ide-string">"Tailwind CSS"</span>, <span className="text-ide-string">"Fluent UI"</span>],</div>
-        <div className="pl-6"><span className="text-ide-component">"backend"</span>: [<span className="text-ide-string">"ASP.NET Core"</span>, <span className="text-ide-string">".NET 10"</span>, <span className="text-ide-string">"Node.js"</span>, <span className="text-ide-string">"PHP"</span>],</div>
-        <div className="pl-6"><span className="text-ide-component">"cloud_db"</span>: [<span className="text-ide-string">"Azure"</span>, <span className="text-ide-string">"SQL"</span>, <span className="text-ide-string">"Oracle"</span>],</div>
-        <div className="pl-6"><span className="text-ide-component">"tools"</span>: [<span className="text-ide-string">"Git"</span>, <span className="text-ide-string">"Azure DevOps"</span>, <span className="text-ide-string">"Teams Toolkit"</span>]</div>
-        <div>{'}'}</div>
-      </div>
-    )
+    icon: '📦',
+    content: [
+      { text: '{', cls: 'text-ide-text' },
+      { indent: 2, parts: [{ text: '"languages"', cls: 'text-ide-component' }, { text: ': [', cls: 'text-ide-text' }, { text: '"C#"', cls: 'text-ide-string' }, { text: ', ', cls: 'text-ide-text' }, { text: '"TypeScript"', cls: 'text-ide-string' }, { text: ', ', cls: 'text-ide-text' }, { text: '"JavaScript"', cls: 'text-ide-string' }, { text: ', ', cls: 'text-ide-text' }, { text: '"Python"', cls: 'text-ide-string' }, { text: '],', cls: 'text-ide-text' }] },
+      { indent: 2, parts: [{ text: '"frontend"', cls: 'text-ide-component' }, { text: ': [', cls: 'text-ide-text' }, { text: '"React"', cls: 'text-ide-string' }, { text: ', ', cls: 'text-ide-text' }, { text: '"Blazor"', cls: 'text-ide-string' }, { text: ', ', cls: 'text-ide-text' }, { text: '"Tailwind"', cls: 'text-ide-string' }, { text: ', ', cls: 'text-ide-text' }, { text: '"Fluent UI"', cls: 'text-ide-string' }, { text: '],', cls: 'text-ide-text' }] },
+      { indent: 2, parts: [{ text: '"backend"', cls: 'text-ide-component' }, { text: ': [', cls: 'text-ide-text' }, { text: '"ASP.NET Core"', cls: 'text-ide-string' }, { text: ', ', cls: 'text-ide-text' }, { text: '".NET 10"', cls: 'text-ide-string' }, { text: ', ', cls: 'text-ide-text' }, { text: '"Node.js"', cls: 'text-ide-string' }, { text: '],', cls: 'text-ide-text' }] },
+      { indent: 2, parts: [{ text: '"cloud_db"', cls: 'text-ide-component' }, { text: ': [', cls: 'text-ide-text' }, { text: '"Azure"', cls: 'text-ide-string' }, { text: ', ', cls: 'text-ide-text' }, { text: '"SQL"', cls: 'text-ide-string' }, { text: ', ', cls: 'text-ide-text' }, { text: '"Oracle"', cls: 'text-ide-string' }, { text: '],', cls: 'text-ide-text' }] },
+      { indent: 2, parts: [{ text: '"tools"', cls: 'text-ide-component' }, { text: ': [', cls: 'text-ide-text' }, { text: '"Git"', cls: 'text-ide-string' }, { text: ', ', cls: 'text-ide-text' }, { text: '"Azure DevOps"', cls: 'text-ide-string' }, { text: ', ', cls: 'text-ide-text' }, { text: '"Teams Toolkit"', cls: 'text-ide-string' }, { text: ']', cls: 'text-ide-text' }] },
+      { text: '}', cls: 'text-ide-text' },
+    ]
   },
   projects: {
     name: 'Projects.jsx',
-    content: (
-      <div className="font-mono text-sm leading-relaxed text-ide-text">
-        <div><span className="text-ide-keyword">import</span> {'{'} <span className="text-ide-variable">useState</span> {'}'} <span className="text-ide-keyword">from</span> <span className="text-ide-string">'react'</span>;</div>
-        <br />
-        <div><span className="text-ide-keyword">export default function</span> <span className="text-ide-function">Projects</span>() {'{'}</div>
-        <div className="pl-6"><span className="text-ide-keyword">return</span> (</div>
-        <div className="pl-12">{'<'}<span className="text-ide-tag">div</span> <span className="text-ide-component">className</span>=<span className="text-ide-string">"grid"</span>{'>'}</div>
-        <div className="pl-16 text-ide-comment">{'/* Ticket Booking, Donut Munchies, Kumpas */'}</div>
-        <div className="pl-16">{'<'}<span className="text-ide-tag">ProjectCard</span> <span className="text-ide-component">data</span>=<span className="text-ide-keyword">{'{'}</span><span className="text-ide-variable">selectedWork</span><span className="text-ide-keyword">{'}'}</span> {'/>'}</div>
-        <div className="pl-12">{'</'}<span className="text-ide-tag">div</span>{'>'}</div>
-        <div className="pl-6">);</div>
-        <div>{'}'}</div>
-      </div>
-    )
+    icon: '🚀',
+    content: [
+      { parts: [{ text: 'import', cls: 'text-ide-keyword' }, { text: ' { ', cls: 'text-ide-text' }, { text: 'useState', cls: 'text-ide-variable' }, { text: ' } ', cls: 'text-ide-text' }, { text: 'from', cls: 'text-ide-keyword' }, { text: " 'react'", cls: 'text-ide-string' }, { text: ';', cls: 'text-ide-text' }] },
+      { empty: true },
+      { parts: [{ text: 'export default function', cls: 'text-ide-keyword' }, { text: ' Projects', cls: 'text-ide-function' }, { text: '() {', cls: 'text-ide-text' }] },
+      { indent: 2, parts: [{ text: 'return', cls: 'text-ide-keyword' }, { text: ' (', cls: 'text-ide-text' }] },
+      { indent: 4, parts: [{ text: '<', cls: 'text-ide-text' }, { text: 'div', cls: 'text-ide-tag' }, { text: ' className', cls: 'text-ide-component' }, { text: '=', cls: 'text-ide-text' }, { text: '"grid"', cls: 'text-ide-string' }, { text: '>', cls: 'text-ide-text' }] },
+      { indent: 6, text: '/* Nomis, Alejo, Kumpas, Donut Munchies */', cls: 'text-ide-comment' },
+      { indent: 6, parts: [{ text: '<', cls: 'text-ide-text' }, { text: 'ProjectCard', cls: 'text-ide-tag' }, { text: ' data', cls: 'text-ide-component' }, { text: '={', cls: 'text-ide-text' }, { text: 'selectedWork', cls: 'text-ide-variable' }, { text: '} />', cls: 'text-ide-text' }] },
+      { indent: 4, parts: [{ text: '</', cls: 'text-ide-text' }, { text: 'div', cls: 'text-ide-tag' }, { text: '>', cls: 'text-ide-text' }] },
+      { indent: 2, text: ');', cls: 'text-ide-text' },
+      { text: '}', cls: 'text-ide-text' },
+    ]
   },
   contact: {
     name: 'contact.css',
-    content: (
-      <div className="font-mono text-sm leading-relaxed text-ide-text">
-        <div className="text-ide-comment">/* Get in touch */</div>
-        <div><span className="text-ide-variable">.contact-me</span> {'{'}</div>
-        <div className="pl-6"><span className="text-ide-component">email</span>: <span className="text-ide-string">"orbilloprincessmorera@gmail.com"</span>;</div>
-        <div className="pl-6"><span className="text-ide-component">linkedin</span>: <span className="text-ide-string">"in/princess-orbillo"</span>;</div>
-        <div className="pl-6"><span className="text-ide-component">github</span>: <span className="text-ide-string">"@princessorbillo"</span>;</div>
-        <div className="pl-6"><span className="text-ide-component">status</span>: <span className="text-ide-function">openToOpportunities</span>();</div>
-        <div>{'}'}</div>
-      </div>
-    )
+    icon: '💬',
+    content: [
+      { text: '/* Get in touch */', cls: 'text-ide-comment' },
+      { parts: [{ text: '.contact-me', cls: 'text-ide-variable' }, { text: ' {', cls: 'text-ide-text' }] },
+      { indent: 2, parts: [{ text: 'email', cls: 'text-ide-component' }, { text: ': ', cls: 'text-ide-text' }, { text: '"orbilloprincessmorera@gmail.com"', cls: 'text-ide-string' }, { text: ';', cls: 'text-ide-text' }] },
+      { indent: 2, parts: [{ text: 'linkedin', cls: 'text-ide-component' }, { text: ': ', cls: 'text-ide-text' }, { text: '"in/princess-orbillo"', cls: 'text-ide-string' }, { text: ';', cls: 'text-ide-text' }] },
+      { indent: 2, parts: [{ text: 'github', cls: 'text-ide-component' }, { text: ': ', cls: 'text-ide-text' }, { text: '"@princessorbillo"', cls: 'text-ide-string' }, { text: ';', cls: 'text-ide-text' }] },
+      { indent: 2, parts: [{ text: 'status', cls: 'text-ide-component' }, { text: ': ', cls: 'text-ide-text' }, { text: 'openToOpportunities', cls: 'text-ide-function' }, { text: '();', cls: 'text-ide-text' }] },
+      { text: '}', cls: 'text-ide-text' },
+    ]
   },
   certifications: {
     name: 'certifications.yml',
-    content: (
-      <div className="font-mono text-sm leading-relaxed text-ide-text">
-        <div className="text-ide-comment"># Verified Credentials</div>
-        <div><span className="text-ide-tag">certifications</span>:</div>
-        
-        <div className="pl-6"><span className="text-ide-keyword">-</span> <span className="text-ide-component">name</span>: <span className="text-ide-string">"TOPCIT Level 5 Passer"</span></div>
-        <div className="pl-8"><span className="text-ide-component">issuer</span>: <span className="text-ide-string">"TOPCIT"</span></div>
-        <div className="pl-8"><span className="text-ide-component">year</span>: <span className="text-ide-keyword">2026</span></div>
-        <br/>
-        <div className="pl-6"><span className="text-ide-keyword">-</span> <span className="text-ide-component">name</span>: <span className="text-ide-string">"Microsoft Azure AI"</span></div>
-        <div className="pl-8"><span className="text-ide-component">issuer</span>: <span className="text-ide-string">"TESDA"</span></div>
-        <div className="pl-8"><span className="text-ide-component">year</span>: <span className="text-ide-keyword">2025</span></div>
-        <br/>
-        <div className="pl-6"><span className="text-ide-keyword">-</span> <span className="text-ide-component">name</span>: <span className="text-ide-string">"Fundamentals of CSS"</span></div>
-        <div className="pl-8"><span className="text-ide-component">issuer</span>: <span className="text-ide-string">"TESDA"</span></div>
-        <div className="pl-8"><span className="text-ide-component">year</span>: <span className="text-ide-keyword">2025</span></div>
-        <br/>
-        <div className="pl-6"><span className="text-ide-keyword">-</span> <span className="text-ide-component">name</span>: <span className="text-ide-string">"IT Specialist Python"</span></div>
-        <div className="pl-8"><span className="text-ide-component">issuer</span>: <span className="text-ide-string">"American Council on Education"</span></div>
-        <div className="pl-8"><span className="text-ide-component">year</span>: <span className="text-ide-keyword">2024</span></div>
-      </div>
-    )
+    icon: '🏆',
+    content: [
+      { text: '# Verified Credentials', cls: 'text-ide-comment' },
+      { parts: [{ text: 'certifications', cls: 'text-ide-tag' }, { text: ':', cls: 'text-ide-text' }] },
+      { empty: true },
+      { indent: 2, parts: [{ text: '-', cls: 'text-ide-keyword' }, { text: ' name', cls: 'text-ide-component' }, { text: ': ', cls: 'text-ide-text' }, { text: '"TOPCIT Level 5 Passer"', cls: 'text-ide-string' }] },
+      { indent: 3, parts: [{ text: 'issuer', cls: 'text-ide-component' }, { text: ': ', cls: 'text-ide-text' }, { text: '"TOPCIT"', cls: 'text-ide-string' }] },
+      { indent: 3, parts: [{ text: 'year', cls: 'text-ide-component' }, { text: ': ', cls: 'text-ide-text' }, { text: '2026', cls: 'text-ide-keyword' }] },
+      { empty: true },
+      { indent: 2, parts: [{ text: '-', cls: 'text-ide-keyword' }, { text: ' name', cls: 'text-ide-component' }, { text: ': ', cls: 'text-ide-text' }, { text: '"Microsoft Azure AI"', cls: 'text-ide-string' }] },
+      { indent: 3, parts: [{ text: 'issuer', cls: 'text-ide-component' }, { text: ': ', cls: 'text-ide-text' }, { text: '"TESDA"', cls: 'text-ide-string' }] },
+      { indent: 3, parts: [{ text: 'year', cls: 'text-ide-component' }, { text: ': ', cls: 'text-ide-text' }, { text: '2025', cls: 'text-ide-keyword' }] },
+      { empty: true },
+      { indent: 2, parts: [{ text: '-', cls: 'text-ide-keyword' }, { text: ' name', cls: 'text-ide-component' }, { text: ': ', cls: 'text-ide-text' }, { text: '"IT Specialist Python"', cls: 'text-ide-string' }] },
+      { indent: 3, parts: [{ text: 'issuer', cls: 'text-ide-component' }, { text: ': ', cls: 'text-ide-text' }, { text: '"ACE"', cls: 'text-ide-string' }] },
+      { indent: 3, parts: [{ text: 'year', cls: 'text-ide-component' }, { text: ': ', cls: 'text-ide-text' }, { text: '2024', cls: 'text-ide-keyword' }] },
+    ]
   }
 };
 
+// ─── IDE Code Line Renderer ───
+function CodeLine({ data, lineNum }) {
+  if (data.empty) {
+    return (
+      <div className="flex">
+        <span className="text-ide-lineNum w-8 text-right mr-4 select-none text-xs">{lineNum}</span>
+        <span>&nbsp;</span>
+      </div>
+    );
+  }
+  
+  const indent = data.indent ? 'pl-' + (data.indent * 4) : '';
+  
+  if (data.parts) {
+    return (
+      <div className="flex">
+        <span className="text-ide-lineNum w-8 text-right mr-4 select-none text-xs">{lineNum}</span>
+        <span className={indent}>
+          {data.parts.map((p, i) => <span key={i} className={p.cls}>{p.text}</span>)}
+        </span>
+      </div>
+    );
+  }
+  
+  if (data.rest) {
+    return (
+      <div className="flex">
+        <span className="text-ide-lineNum w-8 text-right mr-4 select-none text-xs">{lineNum}</span>
+        <span className={indent}>
+          <span className={data.cls}>{data.line}</span>
+          {data.rest.map((p, i) => <span key={i} className={p.cls}>{p.text}</span>)}
+        </span>
+      </div>
+    );
+  }
+  
+  return (
+    <div className="flex">
+      <span className="text-ide-lineNum w-8 text-right mr-4 select-none text-xs">{lineNum}</span>
+      <span className={`${data.cls} ${indent}`}>{data.text}</span>
+    </div>
+  );
+}
+
+// ─── Main App ───
 function App() {
   const [activeSection, setActiveSection] = useState('about');
   const [selectedProject, setSelectedProject] = useState(null);
+  const [isDark, setIsDark] = useState(() => {
+    const saved = localStorage.getItem('theme');
+    return saved ? saved === 'dark' : true; // default dark
+  });
   const containerRef = useRef(null);
+
+  // Apply theme to document
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  }, [isDark]);
 
   // Smooth scroll progress for IDE window parallax
   const { scrollYProgress } = useScroll();
-  const y = useTransform(scrollYProgress, [0, 1], [0, 100]);
+  const y = useTransform(scrollYProgress, [0, 1], [0, 80]);
   const smoothY = useSpring(y, { stiffness: 100, damping: 30, mass: 0.5 });
+
+  // Close modal on Escape key
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape' && selectedProject) {
+        setSelectedProject(null);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [selectedProject]);
 
   // Custom Physics Cursor
   const cursorX = useSpring(0, { stiffness: 150, damping: 15, mass: 0.5 });
   const cursorY = useSpring(0, { stiffness: 150, damping: 15, mass: 0.5 });
-  const cursorXFast = useSpring(0, { stiffness: 500, damping: 25, mass: 0.1 });
-  const cursorYFast = useSpring(0, { stiffness: 500, damping: 25, mass: 0.1 });
 
   useEffect(() => {
     const handleMouseMove = (e) => {
       cursorX.set(e.clientX);
       cursorY.set(e.clientY);
-      cursorXFast.set(e.clientX);
-      cursorYFast.set(e.clientY);
     };
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, [cursorX, cursorY, cursorXFast, cursorYFast]);
+  }, [cursorX, cursorY]);
 
   // Scroll Spy
   useEffect(() => {
@@ -156,243 +209,356 @@ function App() {
     { title: "Donut Munchies", year: "2023", role: "Web Design", desc: "A web design concept highlighting a sweet, modern e-commerce experience. The primary goal was to create a vibrant, engaging storefront that balances playful aesthetics with robust shopping cart mechanics and clear calls-to-action for increased conversions.", link: "https://intet.dashnexpages.net/Portfolio/dmhome.jpg" }
   ];
 
+  const sectionLabels = {
+    about: '01',
+    expertise: '02',
+    projects: '03',
+    certifications: '04',
+    contact: '05',
+  };
+
   return (
-    <div ref={containerRef} className="min-h-screen bg-background text-primary flex flex-col md:flex-row relative bg-dot-pattern">
+    <div ref={containerRef} className="min-h-screen flex flex-col md:flex-row relative">
       
-      {/* Custom Glow Cursor Effect - Large Vibrant Aura */}
+      {/* ── Theme Toggle ── */}
+      <motion.button
+        className="theme-toggle"
+        onClick={() => setIsDark(!isDark)}
+        whileTap={{ scale: 0.9 }}
+        aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+        title={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+      >
+        <AnimatePresence mode="wait">
+          <motion.span
+            key={isDark ? 'sun' : 'moon'}
+            initial={{ rotate: -90, opacity: 0, scale: 0.5 }}
+            animate={{ rotate: 0, opacity: 1, scale: 1 }}
+            exit={{ rotate: 90, opacity: 0, scale: 0.5 }}
+            transition={{ duration: 0.25 }}
+          >
+            {isDark ? '☀️' : '🌙'}
+          </motion.span>
+        </AnimatePresence>
+      </motion.button>
+
+      {/* Atmospheric Background Layers */}
+      <div className="bg-mesh" />
+      <div className="bg-grid-pattern fixed inset-0 z-0 pointer-events-none" />
+      <div className="noise-overlay" />
+
+      {/* Custom Glow Cursor Effect */}
       <motion.div 
-        className="pointer-events-none fixed top-0 left-0 w-[500px] h-[500px] rounded-full mix-blend-multiply opacity-50 z-0 hidden md:block"
+        className="pointer-events-none fixed top-0 left-0 w-[600px] h-[600px] rounded-full opacity-30 z-0 hidden md:block"
         style={{
-          background: 'radial-gradient(circle, rgba(67, 56, 202, 0.5) 0%, rgba(126, 34, 206, 0.3) 30%, rgba(255,255,255,0) 70%)',
-          x: useTransform(cursorX, v => v - 250),
-          y: useTransform(cursorY, v => v - 250),
+          background: 'radial-gradient(circle, rgba(139, 92, 246, 0.4) 0%, rgba(6, 182, 212, 0.2) 40%, rgba(255,255,255,0) 70%)',
+          x: useTransform(cursorX, v => v - 300),
+          y: useTransform(cursorY, v => v - 300),
         }}
       />
       
-      {/* Left Side - Content */}
-      <div className="w-full md:w-1/2 p-8 md:p-24 overflow-y-auto z-10 relative">
+      {/* ════ Left Side — Content ════ */}
+      <div className="w-full md:w-1/2 p-8 md:px-20 md:py-24 overflow-y-auto z-10 relative">
         
-        <header className="mb-40 mt-12 md:mt-0">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <h1 className="text-5xl md:text-7xl font-extrabold tracking-tighter mb-6 text-slate-900 leading-tight">
-              Princess M. Orbillo
+        {/* ── Hero ── */}
+        <header className="mb-36 mt-12 md:mt-0">
+          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
+            <div className="status-badge mb-8">
+              <span className="dot" />
+              Open to Opportunities
+            </div>
+            <h1 className="text-5xl md:text-7xl font-extrabold tracking-tighter mb-6 leading-[1.05]">
+              <span className="gradient-text">Princess M.</span>
+              <br />
+              <span className="text-primary">Orbillo</span>
             </h1>
-            <p className="text-xl md:text-2xl text-secondary max-w-md font-medium leading-relaxed">
+            <p className="text-lg md:text-xl text-secondary max-w-md font-medium leading-relaxed">
               Software Engineer, Front-end & App Developer based in the Philippines.
             </p>
           </motion.div>
         </header>
 
+        {/* ── About ── */}
         <motion.section 
           id="about" 
-          className="mb-40 relative group"
+          className="mb-36 relative group"
           onMouseEnter={() => setActiveSection('about')}
-          initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "-100px" }}
+          initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
         >
-          <div className="absolute -left-6 top-0 bottom-0 w-1 bg-accent scale-y-0 group-hover:scale-y-100 transition-transform origin-top duration-300"></div>
-          <h2 className="text-sm font-mono text-accent uppercase tracking-widest mb-8 border-b border-gray-200 pb-2 flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-accent animate-pulse"></span> 01 / About
+          <div className="section-bar" />
+          <h2 className="text-xs font-mono text-secondary uppercase tracking-[0.2em] mb-8 pb-3 border-b border-surface-border flex items-center gap-3">
+            <span className="text-accent font-bold">{sectionLabels.about}</span>
+            <span className="w-6 h-[1px] bg-muted" />
+            About
           </h2>
-          <div className="text-lg leading-relaxed max-w-md space-y-6 text-slate-700 font-medium">
-            <p className="group-hover:text-black transition-colors duration-300">I specialize in building robust software architectures and engaging user interfaces, focusing on performance and user satisfaction.</p>
-            <p className="text-secondary italic">"Transforming challenges into opportunities through thoughtful technology."</p>
+          <div className="text-lg leading-relaxed max-w-md space-y-6 text-secondary font-medium">
+            <p className="group-hover:text-primary transition-colors duration-500">I specialize in building robust software architectures and engaging user interfaces, focusing on performance and user satisfaction.</p>
+            <p className="text-muted italic border-l-2 border-accent/30 pl-4">"Transforming challenges into opportunities through thoughtful technology."</p>
           </div>
         </motion.section>
 
+        {/* ── Expertise ── */}
         <motion.section 
           id="expertise" 
-          className="mb-40 relative group"
+          className="mb-36 relative group"
           onMouseEnter={() => setActiveSection('expertise')}
-          initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "-100px" }}
+          initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6, delay: 0.1 }}
         >
-          <div className="absolute -left-6 top-0 bottom-0 w-1 bg-accent scale-y-0 group-hover:scale-y-100 transition-transform origin-top duration-300"></div>
-          <h2 className="text-sm font-mono text-accent uppercase tracking-widest mb-8 border-b border-gray-200 pb-2 flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-accent animate-pulse"></span> 02 / Expertise
+          <div className="section-bar" />
+          <h2 className="text-xs font-mono text-secondary uppercase tracking-[0.2em] mb-8 pb-3 border-b border-surface-border flex items-center gap-3">
+            <span className="text-accent font-bold">{sectionLabels.expertise}</span>
+            <span className="w-6 h-[1px] bg-muted" />
+            Expertise
           </h2>
-          <div className="space-y-8 max-w-md">
-            {['Frontend Development', 'Software & Mobile', 'Backend & Databases', 'Cloud & Architecture'].map((title, i) => (
-              <motion.div key={i} whileHover={{ x: 10 }} className="cursor-default">
-                <h3 className="text-xl mb-2 font-bold text-slate-800">{title}</h3>
-                <p className="text-secondary font-medium">
-                  {i === 0 ? 'React, Blazor, Tailwind, Fluent UI' : 
-                   i === 1 ? 'C#, TypeScript, Python, Android Studio' : 
-                   i === 2 ? 'ASP.NET Core, .NET 10, SQL' :
-                   'Azure, Bot Framework, Vertical Slice, Microservices'}
-                </p>
+          <div className="space-y-6 max-w-md">
+            {[
+              { title: 'Frontend Development', tech: 'React · Blazor · Tailwind · Fluent UI' },
+              { title: 'Software & Mobile', tech: 'C# · TypeScript · Python · Android Studio' },
+              { title: 'Backend & Databases', tech: 'ASP.NET Core · .NET 10 · SQL' },
+              { title: 'Cloud & Architecture', tech: 'Azure · Bot Framework · Vertical Slice · Microservices' },
+            ].map((item, i) => (
+              <motion.div 
+                key={i} 
+                whileHover={{ x: 8 }} 
+                className="glass-card p-5 cursor-default"
+              >
+                <h3 className="text-base font-bold text-primary mb-1">{item.title}</h3>
+                <p className="text-secondary text-sm font-mono">{item.tech}</p>
               </motion.div>
             ))}
           </div>
         </motion.section>
 
+        {/* ── Projects ── */}
         <motion.section 
           id="projects" 
-          className="mb-40 relative group"
+          className="mb-36 relative group"
           onMouseEnter={() => setActiveSection('projects')}
-          initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "-100px" }}
+          initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6, delay: 0.1 }}
         >
-          <div className="absolute -left-6 top-0 bottom-0 w-1 bg-accent scale-y-0 group-hover:scale-y-100 transition-transform origin-top duration-300"></div>
-          <h2 className="text-sm font-mono text-accent uppercase tracking-widest mb-8 border-b border-gray-200 pb-2 flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-accent animate-pulse"></span> 03 / Selected Work
+          <div className="section-bar" />
+          <h2 className="text-xs font-mono text-secondary uppercase tracking-[0.2em] mb-8 pb-3 border-b border-surface-border flex items-center gap-3">
+            <span className="text-accent font-bold">{sectionLabels.projects}</span>
+            <span className="w-6 h-[1px] bg-muted" />
+            Selected Work
           </h2>
-          <div className="space-y-12 max-w-md">
+          <div className="space-y-4 max-w-md">
             {projects.map((project, idx) => (
               <motion.div 
-                key={idx} 
-                whileHover={{ scale: 1.02 }} 
+                key={idx}
+                whileHover={{ scale: 1.01 }} 
                 onClick={() => setSelectedProject(project)}
-                className="group/item cursor-pointer block p-6 -ml-6 rounded-2xl hover:bg-white hover:shadow-xl hover:shadow-blue-500/10 transition-all border border-transparent hover:border-blue-100"
+                className="glass-card p-6 cursor-pointer group/item"
               >
-                <div className="block">
-                  <div className="flex items-center justify-between mb-2">
-                    <h3 className="text-2xl font-bold text-slate-800 group-hover/item:text-accent transition-colors">{project.title}</h3>
-                    <span className="text-accent opacity-0 group-hover/item:opacity-100 transition-opacity">↗</span>
-                  </div>
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="text-accent font-mono text-xs font-bold tracking-wider uppercase bg-blue-50 w-fit px-3 py-1 rounded-full">{project.role}</div>
-                    <div className="text-slate-500 font-mono text-sm font-bold">{project.year}</div>
-                  </div>
-                  <p className="text-slate-600 font-medium leading-relaxed">{project.desc}</p>
+                <div className="flex items-center justify-between mb-2">
+                  <h3 className="text-xl font-bold text-primary group-hover/item:text-accent transition-colors duration-300">{project.title}</h3>
+                  <motion.span 
+                    className="text-accent text-lg"
+                    initial={{ opacity: 0, x: -5 }}
+                    whileHover={{ opacity: 1, x: 0 }}
+                  >↗</motion.span>
                 </div>
+                <div className="flex items-center gap-3 mb-3">
+                  <span className="text-xs font-mono font-semibold tracking-wider uppercase px-2.5 py-1 rounded-full bg-accent/10 text-accent border border-accent/20">
+                    {project.role}
+                  </span>
+                  <span className="text-muted font-mono text-xs">{project.year}</span>
+                </div>
+                <p className="text-secondary text-sm leading-relaxed line-clamp-2">{project.desc}</p>
               </motion.div>
             ))}
           </div>
         </motion.section>
 
+        {/* ── Certifications ── */}
         <motion.section 
           id="certifications" 
-          className="mb-40 relative group"
+          className="mb-36 relative group"
           onMouseEnter={() => setActiveSection('certifications')}
-          initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "-100px" }}
+          initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6, delay: 0.1 }}
         >
-          <div className="absolute -left-6 top-0 bottom-0 w-1 bg-accent scale-y-0 group-hover:scale-y-100 transition-transform origin-top duration-300"></div>
-          <h2 className="text-sm font-mono text-accent uppercase tracking-widest mb-8 border-b border-gray-200 pb-2 flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-accent animate-pulse"></span> 04 / Certifications
+          <div className="section-bar" />
+          <h2 className="text-xs font-mono text-secondary uppercase tracking-[0.2em] mb-8 pb-3 border-b border-surface-border flex items-center gap-3">
+            <span className="text-accent font-bold">{sectionLabels.certifications}</span>
+            <span className="w-6 h-[1px] bg-muted" />
+            Certifications
           </h2>
-          <div className="space-y-8 max-w-md">
+          <div className="space-y-3 max-w-md">
             {certs.map((cert, idx) => (
-              <motion.div key={idx} whileHover={{ x: 10 }} className="cursor-default">
-                <h3 className="text-lg mb-1 font-bold text-slate-800">{cert.title}</h3>
-                <div className="flex items-center gap-2 text-sm text-secondary font-medium">
-                  <span>{cert.issuer}</span>
-                  <span className="w-1 h-1 rounded-full bg-slate-300"></span>
-                  <span>{cert.year}</span>
+              <motion.div 
+                key={idx} 
+                whileHover={{ x: 6 }} 
+                className="glass-card p-4 cursor-default flex items-start gap-4"
+              >
+                <div className="w-10 h-10 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center shrink-0 mt-0.5">
+                  <span className="text-accent text-sm font-bold">✓</span>
+                </div>
+                <div>
+                  <h3 className="text-sm font-bold text-primary mb-1">{cert.title}</h3>
+                  <div className="flex items-center gap-2 text-xs text-muted font-medium">
+                    <span>{cert.issuer}</span>
+                    <span className="w-1 h-1 rounded-full bg-muted/50" />
+                    <span>{cert.year}</span>
+                  </div>
                 </div>
               </motion.div>
             ))}
           </div>
         </motion.section>
 
+        {/* ── Contact ── */}
         <motion.section 
           id="contact" 
           className="mb-32 relative group"
           onMouseEnter={() => setActiveSection('contact')}
-          initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "-100px" }}
+          initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6, delay: 0.1 }}
         >
-          <div className="absolute -left-6 top-0 bottom-0 w-1 bg-accent scale-y-0 group-hover:scale-y-100 transition-transform origin-top duration-300"></div>
-          <h2 className="text-sm font-mono text-accent uppercase tracking-widest mb-8 border-b border-gray-200 pb-2 flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-accent animate-pulse"></span> 05 / Contact
+          <div className="section-bar" />
+          <h2 className="text-xs font-mono text-secondary uppercase tracking-[0.2em] mb-8 pb-3 border-b border-surface-border flex items-center gap-3">
+            <span className="text-accent font-bold">{sectionLabels.contact}</span>
+            <span className="w-6 h-[1px] bg-muted" />
+            Contact
           </h2>
-          <div className="flex flex-col gap-6 text-lg font-bold">
-            <a href="mailto:orbilloprincessmorera@gmail.com" className="hover:text-accent flex items-center gap-4 transition-colors w-fit group/link">
-              <span className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center group-hover/link:bg-blue-100 transition-colors">✉</span> Email
-            </a>
-            <a href="https://www.linkedin.com/in/princess-orbillo-4086602a0/" target="_blank" rel="noopener noreferrer" className="hover:text-accent flex items-center gap-4 transition-colors w-fit group/link">
-              <span className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center group-hover/link:bg-blue-100 transition-colors">in</span> LinkedIn
-            </a>
-            <a href="https://github.com/princessorbillo" target="_blank" rel="noopener noreferrer" className="hover:text-accent flex items-center gap-4 transition-colors w-fit group/link">
-              <span className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center group-hover/link:bg-blue-100 transition-colors">{'<>'}</span> GitHub
-            </a>
+          <div className="flex flex-col gap-3 max-w-md">
+            {[
+              { href: "mailto:orbilloprincessmorera@gmail.com", icon: "✉", label: "Email", external: false },
+              { href: "https://www.linkedin.com/in/princess-orbillo-4086602a0/", icon: "in", label: "LinkedIn", external: true },
+              { href: "https://github.com/princessorbillo", icon: "<>", label: "GitHub", external: true },
+            ].map((link, i) => (
+              <motion.a 
+                key={i}
+                href={link.href} 
+                target={link.external ? "_blank" : undefined}
+                rel={link.external ? "noopener noreferrer" : undefined}
+                whileHover={{ x: 6 }}
+                className="glass-card p-4 flex items-center gap-4 group/link cursor-pointer"
+              >
+                <span className="w-10 h-10 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center text-accent font-bold text-sm group-hover/link:bg-accent/20 transition-colors">
+                  {link.icon}
+                </span>
+                <span className="font-bold text-primary group-hover/link:text-accent transition-colors">{link.label}</span>
+                <span className="ml-auto text-muted opacity-0 group-hover/link:opacity-100 transition-opacity">→</span>
+              </motion.a>
+            ))}
           </div>
         </motion.section>
 
       </div>
 
-      {/* Right Side - Interactive IDE Window */}
+      {/* ════ Right Side — IDE Window ════ */}
       <div className="hidden md:flex w-1/2 fixed right-0 top-0 bottom-0 items-center justify-center p-12 z-20 pointer-events-none">
         
-        {/* Subtle background glow behind IDE */}
-        <div className="absolute inset-0 bg-gradient-to-l from-blue-50/50 to-transparent z-0"></div>
+        {/* Subtle ambient glow behind IDE */}
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-accent/5 blur-3xl" />
+        </div>
 
         <motion.div 
           style={{ y: smoothY }}
-          className="w-full max-w-lg bg-ide-bg rounded-2xl ide-shadow overflow-hidden border border-ide-border flex flex-col relative z-10 pointer-events-auto backdrop-blur-xl bg-white/80"
+          className="w-full max-w-lg bg-ide-bg rounded-2xl ide-shadow ide-glow-border overflow-hidden border border-ide-border flex flex-col relative z-10 pointer-events-auto"
         >
           
-          {/* IDE Mac Window Header */}
-          <div className="h-12 bg-white/50 backdrop-blur-md flex items-center px-4 border-b border-ide-border shrink-0">
+          {/* IDE Top Bar */}
+          <div className="h-11 bg-ide-topbar flex items-center px-4 border-b border-ide-border shrink-0">
             <div className="flex gap-2 group cursor-pointer">
-              <div className="w-3 h-3 rounded-full bg-[#ff5f56] border border-[#e0443e] hover:brightness-110"></div>
-              <div className="w-3 h-3 rounded-full bg-[#ffbd2e] border border-[#dea123] hover:brightness-110"></div>
-              <div className="w-3 h-3 rounded-full bg-[#27c93f] border border-[#1aab29] hover:brightness-110"></div>
+              <div className="w-3 h-3 rounded-full bg-[#ff5f56] hover:brightness-125 transition-all" />
+              <div className="w-3 h-3 rounded-full bg-[#ffbd2e] hover:brightness-125 transition-all" />
+              <div className="w-3 h-3 rounded-full bg-[#27c93f] hover:brightness-125 transition-all" />
             </div>
-            <div className="mx-auto flex items-center gap-2 px-3 py-1 rounded-md bg-slate-100 text-xs font-mono text-secondary font-medium tracking-wide">
-              <span>📄</span> {snippets[activeSection].name}
+            <div className="mx-auto flex items-center gap-2 px-3 py-1 rounded-md bg-surface text-xs font-mono text-ide-text/60 font-medium tracking-wide">
+              <span>{snippets[activeSection].icon}</span> 
+              <span>{snippets[activeSection].name}</span>
             </div>
-            <div className="w-12"></div> {/* Spacer for centering */}
+            <div className="w-12" />
           </div>
 
-          {/* IDE Content Area */}
-          <div className="p-8 flex-1 min-h-[350px] relative">
+          {/* IDE Content */}
+          <div className="p-6 flex-1 min-h-[380px] relative">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeSection}
-                initial={{ opacity: 0, y: 10, scale: 0.98 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, y: -10, scale: 0.98 }}
-                transition={{ duration: 0.3, ease: "easeOut" }}
-                className="absolute inset-0 p-8"
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.25, ease: "easeOut" }}
+                className="absolute inset-0 p-6 font-mono text-sm leading-relaxed"
               >
-                {snippets[activeSection].content}
+                {snippets[activeSection].content.map((line, i) => (
+                  <CodeLine key={i} data={line} lineNum={i + 1} />
+                ))}
+                {/* Blinking cursor */}
+                <div className="flex mt-0.5">
+                  <span className="text-ide-lineNum w-8 text-right mr-4 select-none text-xs">
+                    {snippets[activeSection].content.length + 1}
+                  </span>
+                  <span className="w-[2px] h-4 bg-accent cursor-blink" />
+                </div>
               </motion.div>
             </AnimatePresence>
+          </div>
+
+          {/* IDE Status Bar */}
+          <div className="h-6 bg-ide-topbar border-t border-ide-border flex items-center px-4 text-[10px] font-mono text-ide-text/40 gap-4">
+            <span className="flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#27c93f]" />
+              UTF-8
+            </span>
+            <span>Ln {snippets[activeSection].content.length}, Col 1</span>
+            <span className="ml-auto">Spaces: 2</span>
           </div>
           
         </motion.div>
       </div>
 
-      {/* Project Popup Modal */}
+      {/* ════ Project Modal ════ */}
       <AnimatePresence>
         {selectedProject && (
           <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-sm"
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-md"
             onClick={() => setSelectedProject(null)}
           >
             <motion.div 
-              initial={{ scale: 0.95, opacity: 0, y: 20 }}
+              initial={{ scale: 0.9, opacity: 0, y: 30 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.95, opacity: 0, y: 20 }}
+              exit={{ scale: 0.9, opacity: 0, y: 30 }}
+              transition={{ type: "spring", damping: 25, stiffness: 300 }}
               onClick={(e) => e.stopPropagation()}
-              className="bg-white rounded-2xl overflow-hidden shadow-2xl max-w-4xl w-full max-h-[90vh] flex flex-col md:flex-row relative"
+              className="bg-surface-card rounded-2xl overflow-hidden max-w-4xl w-full max-h-[90vh] flex flex-col md:flex-row relative border border-surface-border shadow-2xl shadow-accent/5"
             >
               <button 
                 onClick={() => setSelectedProject(null)}
-                className="absolute top-4 right-4 z-10 w-8 h-8 flex items-center justify-center bg-black/10 hover:bg-black/20 text-black rounded-full transition-colors"
+                className="absolute top-4 right-4 z-10 w-8 h-8 flex items-center justify-center bg-white/10 hover:bg-white/20 text-white rounded-full transition-colors text-sm"
               >
                 ✕
               </button>
               
               {/* Image side */}
-              <div className="w-full md:w-3/5 bg-slate-100 h-64 md:h-auto relative flex items-center justify-center overflow-hidden">
+              <div className="w-full md:w-1/2 bg-background h-64 md:h-auto relative overflow-hidden">
                 <img 
                   src={selectedProject.link} 
                   alt={selectedProject.title} 
-                  className="w-full h-full object-cover object-top"
+                  className="w-full h-full md:absolute md:inset-0 object-cover object-top"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-surface-card/80 via-transparent to-transparent md:bg-gradient-to-r md:from-transparent md:to-surface-card/10" />
               </div>
 
               {/* Info side */}
-              <div className="w-full md:w-2/5 p-8 md:p-12 flex flex-col justify-center bg-white">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="text-accent font-mono text-xs font-bold tracking-wider uppercase bg-blue-50 w-fit px-3 py-1 rounded-full">
+              <div className="w-full md:w-1/2 p-8 md:p-10 flex flex-col justify-center min-h-[350px]">
+                <div className="flex items-center gap-3 mb-4 flex-wrap">
+                  <span className="text-xs font-mono font-semibold tracking-wider uppercase px-2.5 py-1 rounded-full bg-accent/10 text-accent border border-accent/20">
                     {selectedProject.role}
-                  </div>
-                  <div className="text-slate-500 font-mono text-sm font-bold">{selectedProject.year}</div>
+                  </span>
+                  <span className="text-muted font-mono text-xs">{selectedProject.year}</span>
                 </div>
-                <h3 className="text-3xl font-extrabold text-slate-900 mb-4">{selectedProject.title}</h3>
-                <p className="text-lg text-slate-600 leading-relaxed mb-6">
+                <h3 className="text-2xl font-extrabold text-primary mb-4">{selectedProject.title}</h3>
+                <p className="text-sm text-secondary leading-relaxed mb-6">
                   {selectedProject.desc}
                 </p>
                 {selectedProject.url && (
@@ -400,7 +566,9 @@ function App() {
                     href={selectedProject.url} 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 bg-accent text-white px-6 py-3 rounded-full font-bold w-fit hover:bg-blue-600 transition-colors shadow-lg shadow-blue-500/30"
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full font-bold text-sm w-fit transition-all duration-300
+                      bg-gradient-to-r from-accent to-accent-cyan text-white
+                      hover:shadow-lg hover:shadow-accent/30 hover:scale-105"
                   >
                     Visit Website <span>↗</span>
                   </a>
